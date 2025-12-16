@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Button, Flex } from '$lib';
+  import { base } from '$app/paths';
 
   const components = [
     { name: 'Button', path: '/button', description: 'Used to trigger an operation.', icon: '🔘' },
@@ -20,7 +21,7 @@
       and following Ant Design specifications.
     </p>
     <Flex gap="middle">
-      <Button type="primary" size="large" href="/button">Get Started</Button>
+      <Button type="primary" size="large" href="{base}/button">Get Started</Button>
       <Button size="large" href="https://ant.design" target="_blank">Ant Design Docs</Button>
     </Flex>
   </header>
@@ -55,7 +56,7 @@
     <h2>Components</h2>
     <div class="components-grid">
       {#each components as comp}
-        <a href={comp.path} class="component-card">
+        <a href="{base}{comp.path}" class="component-card">
           <span class="component-icon">{comp.icon}</span>
           <h3>{comp.name}</h3>
           <p>{comp.description}</p>
