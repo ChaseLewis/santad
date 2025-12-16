@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Santad - Svelte Ant Design</title>
+		<meta name="description" content="A Svelte 5 component library inspired by Ant Design" />
+		<!-- Prevent theme flash by detecting preference before render -->
+		<script>
+			(function() {
+				const stored = localStorage.getItem('santad-theme');
+				let theme = stored || 'system';
+				
+				if (theme === 'system') {
+					theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				}
+				
+				document.documentElement.dataset.theme = theme;
+				
+				// Apply critical dark mode styles immediately
+				if (theme === 'dark') {
+					document.documentElement.style.colorScheme = 'dark';
+				}
+			})();
+		</script>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
+

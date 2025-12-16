@@ -1,0 +1,6 @@
+[submodule "submodules/antd"]
+	path = submodules/antd
+	url = https://github.com/ant-design/ant-design.git
+[submodule "submodules/ant-design-icons"]
+	path = submodules/ant-design-icons
+	url = https://github.com/ant-design/ant-design-icons.git

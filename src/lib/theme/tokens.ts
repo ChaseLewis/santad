@@ -1,0 +1,150 @@
+/**
+ * Design tokens ported from Ant Design's seed tokens
+ * These are the foundational design values that drive the entire design system
+ */
+
+export const defaultPresetColors = {
+  blue: '#1677FF',
+  purple: '#722ED1',
+  cyan: '#13C2C2',
+  green: '#52C41A',
+  magenta: '#EB2F96',
+  red: '#F5222D',
+  orange: '#FA8C16',
+  yellow: '#FADB14',
+  volcano: '#FA541C',
+  geekblue: '#2F54EB',
+  gold: '#FAAD14',
+  lime: '#A0D911',
+} as const;
+
+export const seedTokens = {
+  // Preset colors
+  ...defaultPresetColors,
+
+  // Semantic colors
+  colorPrimary: '#1677ff',
+  colorSuccess: '#52c41a',
+  colorWarning: '#faad14',
+  colorError: '#ff4d4f',
+  colorInfo: '#1677ff',
+  colorLink: '#1677ff',
+  colorTextBase: '#000000',
+  colorBgBase: '#ffffff',
+
+  // Typography
+  fontFamily: `AlibabaSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif`,
+  fontFamilyCode: `'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace`,
+  fontSize: 14,
+  fontSizeSM: 12,
+  fontSizeLG: 16,
+  fontSizeXL: 20,
+  fontSizeHeading1: 38,
+  fontSizeHeading2: 30,
+  fontSizeHeading3: 24,
+  fontSizeHeading4: 20,
+  fontSizeHeading5: 16,
+
+  // Font weight
+  fontWeightNormal: 400,
+  fontWeightMedium: 500,
+  fontWeightSemibold: 600,
+  fontWeightBold: 700,
+
+  // Line height
+  lineHeight: 1.5714285714285714,
+  lineHeightSM: 1.6666666666666667,
+  lineHeightLG: 1.5,
+  lineHeightHeading1: 1.2105263157894737,
+  lineHeightHeading2: 1.2666666666666666,
+  lineHeightHeading3: 1.3333333333333333,
+  lineHeightHeading4: 1.4,
+  lineHeightHeading5: 1.5,
+
+  // Line
+  lineWidth: 1,
+  lineType: 'solid' as const,
+
+  // Motion
+  motionUnit: 0.1,
+  motionDurationFast: '0.1s',
+  motionDurationMid: '0.2s',
+  motionDurationSlow: '0.3s',
+  motionEaseInOut: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
+  motionEaseOut: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+  motionEaseIn: 'cubic-bezier(0.55, 0.055, 0.675, 0.19)',
+  motionEaseOutBack: 'cubic-bezier(0.12, 0.4, 0.29, 1.46)',
+  motionEaseInBack: 'cubic-bezier(0.71, -0.46, 0.88, 0.6)',
+  motionEaseOutCirc: 'cubic-bezier(0.08, 0.82, 0.17, 1)',
+  motionEaseInOutCirc: 'cubic-bezier(0.78, 0.14, 0.15, 0.86)',
+
+  // Border radius
+  borderRadius: 6,
+  borderRadiusXS: 2,
+  borderRadiusSM: 4,
+  borderRadiusLG: 8,
+  borderRadiusOuter: 4,
+
+  // Size
+  sizeUnit: 4,
+  sizeStep: 4,
+  sizeXXS: 4,
+  sizeXS: 8,
+  sizeSM: 12,
+  size: 16,
+  sizeMD: 20,
+  sizeLG: 24,
+  sizeXL: 32,
+  sizeXXL: 48,
+
+  // Control
+  controlHeight: 32,
+  controlHeightXS: 24,
+  controlHeightSM: 24,
+  controlHeightLG: 40,
+
+  // Spacing (padding/margin)
+  paddingXXS: 4,
+  paddingXS: 8,
+  paddingSM: 12,
+  padding: 16,
+  paddingMD: 20,
+  paddingLG: 24,
+  paddingXL: 32,
+
+  marginXXS: 4,
+  marginXS: 8,
+  marginSM: 12,
+  margin: 16,
+  marginMD: 20,
+  marginLG: 24,
+  marginXL: 32,
+  marginXXL: 48,
+
+  // Box shadow
+  boxShadow: '0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05)',
+  boxShadowSecondary: '0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05)',
+  boxShadowTertiary: '0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02)',
+
+  // zIndex
+  zIndexBase: 0,
+  zIndexPopupBase: 1000,
+  zIndexAffix: 10,
+  zIndexModal: 1000,
+  zIndexModalMask: 1000,
+  zIndexDrawer: 1000,
+  zIndexDropdown: 1050,
+  zIndexTooltip: 1070,
+  zIndexPopover: 1080,
+
+  // Opacity
+  opacityLoading: 0.65,
+
+  // Wireframe mode
+  wireframe: false,
+  motion: true,
+} as const;
+
+export type SeedTokens = typeof seedTokens;
+export type PresetColorKey = keyof typeof defaultPresetColors;
+
