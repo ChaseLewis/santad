@@ -2,6 +2,8 @@
 
 **Svelte Ant Design** — A Svelte 5 component library inspired by [Ant Design](https://ant.design/).
 
+📖 **[Component Demos](https://chaselewis.github.io/santad/)**
+
 > ⚠️ **Early Development**: This library is in active development. APIs may change.
 
 ## Features
