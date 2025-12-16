@@ -188,7 +188,7 @@ This project is configured to deploy automatically to GitHub Pages.
 1. Push your code to a GitHub repository
 2. Go to **Settings** → **Pages**
 3. Under **Build and deployment**, select **GitHub Actions** as the source
-4. Push to `main` branch to trigger deployment
+4. Push to `master` branch to trigger deployment
 
 The site will be available at `https://<username>.github.io/santad/`
 
@@ -199,6 +199,32 @@ If your repo is named differently, update the `base` path in `svelte.config.js`:
 ```js
 const base = process.env.NODE_ENV === 'production' ? '/your-repo-name' : '';
 ```
+
+## Publishing to npm
+
+A manual GitHub Action is available to publish the library to npm.
+
+### Setup
+
+1. Create an npm access token at [npmjs.com](https://www.npmjs.com/settings/~/tokens)
+2. Add the token as a repository secret named `NPM_TOKEN`:
+   - Go to **Settings** → **Secrets and variables** → **Actions**
+   - Click **New repository secret**
+   - Name: `NPM_TOKEN`, Value: your npm token
+
+### Publishing
+
+1. Go to **Actions** → **Publish to npm**
+2. Click **Run workflow**
+3. Select version bump type (`patch`, `minor`, or `major`)
+4. Optionally enable **Dry run** to test without publishing
+5. Click **Run workflow**
+
+The workflow will:
+- Bump the version in `package.json`
+- Build the package
+- Publish to npm
+- Commit and tag the version bump
 
 ## License
 
