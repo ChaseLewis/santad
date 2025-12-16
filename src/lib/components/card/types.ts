@@ -80,9 +80,15 @@ export interface CardProps {
   style?: string;
   /** Semantic inline styles for component parts */
   styles?: CardStyles;
-  /** Card body content */
-  children?: Snippet;
+  /** Card body content (can include TabPane components for tabbed cards) */
+  body?: Snippet;
   /** Click handler */
   onclick?: (e: MouseEvent) => void;
+  /** Default active tab key (for tabbed cards) */
+  defaultActiveTabKey?: string;
+  /** Active tab key - controlled mode (for tabbed cards) */
+  activeTabKey?: string;
+  /** Callback when active tab changes (for tabbed cards) */
+  onTabChange?: (key: string) => void;
 }
 

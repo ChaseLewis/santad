@@ -12,9 +12,16 @@ export class TabsState {
   flex = $state(false);
   position = $state<TabPosition>('top');
 
-  constructor(initialActiveKey: string = '', initialType: TabsType = 'line') {
+  constructor(
+    initialActiveKey: string = '', 
+    initialType: TabsType = 'line',
+    initialFlex: boolean = false,
+    initialPosition: TabPosition = 'top'
+  ) {
     this.activeKey = initialActiveKey;
     this.type = initialType;
+    this.flex = initialFlex;
+    this.position = initialPosition;
   }
 
   register(pane: TabPaneRegistration) {

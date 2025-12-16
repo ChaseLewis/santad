@@ -59,7 +59,7 @@
     unregister?.();
   });
 
-  // Check if this pane is active - using $derived to track reactive state
+  // Derive isActive directly from context
   const isActive = $derived(tabsState?.activeKey === key);
   
   // Check if parent has flex enabled
@@ -68,30 +68,27 @@
   // Get tab position for border-radius adjustment
   const position = $derived(tabsState?.position ?? 'top');
   
-  // Build class list
-  const classList = $derived([
+  // Build base class list (without active/hidden state)
+  const baseClass = $derived([
     'ant-tabs-tabpane',
-    isActive ? 'ant-tabs-tabpane-active' : 'ant-tabs-tabpane-hidden',
     isFlex && 'ant-tabs-tabpane-flex',
     isFlex && `ant-tabs-tabpane-flex-${position}`,
     className,
   ].filter(Boolean).join(' '));
 </script>
 
-<!-- TabPane renders its own content -->
-<div
-  class={classList}
-  {style}
-  role="tabpanel"
-  aria-hidden={!isActive}
-  tabindex={isActive ? 0 : -1}
->
-  {#if children}
+<!-- TabPane renders its own content - hidden via CSS when inactive -->
+{#if children}
+  <div
+    class="{baseClass} {isActive ? 'ant-tabs-tabpane-active' : 'ant-tabs-tabpane-hidden'}"
+    {style}
+    role="tabpanel"
+    aria-hidden={!isActive}
+    tabindex={isActive ? 0 : -1}
+  >
     {@render children()}
-  {:else}
-    <p>No children for {key}</p>
-  {/if}
-</div>
+  </div>
+{/if}
 
 <style>
   :global(.ant-tabs-tabpane) {
