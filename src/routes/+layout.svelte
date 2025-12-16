@@ -4,6 +4,7 @@
   import type { ThemeMode } from '$lib/theme';
   import type { Snippet } from 'svelte';
   import { page } from '$app/stores';
+  import { base } from '$app/paths';
   import { browser } from '$app/environment';
 
   interface Props {
@@ -79,9 +80,9 @@
           {#each navItems as item}
             <li>
               <a 
-                href={item.path} 
+                href="{base}{item.path}" 
                 class="nav-link"
-                class:active={$page.url.pathname === item.path}
+                class:active={$page.url.pathname === `${base}${item.path}` || ($page.url.pathname === base && item.path === '/')}
               >
                 <span class="nav-text">{item.name}</span>
               </a>
