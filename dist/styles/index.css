@@ -1,9 +1,0 @@
-/**
- * Santad - Main Stylesheet
- * Import this file to get all base styles and CSS custom properties
- */
-
-@import './base.css';
-@import './variables.css';
-@import '../utils/wave/wave.css';
-

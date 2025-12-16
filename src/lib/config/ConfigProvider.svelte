@@ -7,7 +7,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import { setContext } from 'svelte';
-  import { browser } from '$app/environment';
   import { createGetPrefixCls } from './context.svelte';
   import { defaultConfig, type ResolvedConfig } from './types';
   import {
@@ -16,6 +15,9 @@
     type ThemeConfig,
     type ResolvedThemeMode,
   } from '../theme';
+
+  // Browser check that works in any environment (SvelteKit, Vite, etc.)
+  const browser = typeof window !== 'undefined';
 
   interface Props extends ConfigProviderProps {
     children: Snippet;
