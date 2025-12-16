@@ -32,7 +32,7 @@
   let unregister: (() => void) | undefined;
 
   // A dummy snippet that we'll pass - actual content is rendered by TabPane itself
-  const dummyChildren: Snippet = () => {};
+  const dummyChildren = (() => {}) as unknown as Snippet;
 
   // Register on mount
   onMount(() => {
