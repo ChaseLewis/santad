@@ -41,6 +41,7 @@ export interface AutoCompleteClassNames {
   optionDisabled?: string;
   groupLabel?: string;
   clear?: string;
+  prefix?: string;
   suffix?: string;
 }
 

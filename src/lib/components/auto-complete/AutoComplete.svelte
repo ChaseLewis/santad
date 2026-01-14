@@ -372,7 +372,7 @@
   <!-- Selector -->
   <div class="{prefixCls}-selector">
     {#if prefix}
-      <span class="{prefixCls}-prefix {classNames.suffix ?? ''}">
+      <span class="{prefixCls}-prefix {classNames.prefix ?? ''}">
         {#if typeof prefix === 'string'}
           {prefix}
         {:else}
@@ -401,40 +401,39 @@
         onblur={handleBlur}
         {...restProps}
       />
-    </span>
-    
-    {#if !value && placeholder}
-      <span class="{prefixCls}-selection-placeholder">{placeholder}</span>
-    {/if}
-  </div>
-
-  <!-- Clear button -->
-  {#if allowClear && value && !disabled}
-    <span 
-      class="{prefixCls}-clear {classNames.clear ?? ''}"
-      onclick={handleClear}
-      onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleClear(e as unknown as MouseEvent); }}
-      onmousedown={handlePopupMouseDown}
-      role="button"
-      tabindex={-1}
-      aria-label="Clear"
-    >
-      <svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor">
-        <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"/>
-      </svg>
-    </span>
-  {/if}
-
-  <!-- Suffix -->
-  {#if suffix}
-    <span class="{prefixCls}-suffix {classNames.suffix ?? ''}">
-      {#if typeof suffix === 'string'}
-        {suffix}
-      {:else}
-        {@render suffix()}
+      {#if !value && placeholder}
+        <span class="{prefixCls}-selection-placeholder">{placeholder}</span>
       {/if}
     </span>
-  {/if}
+
+    <!-- Clear button -->
+    {#if allowClear && value && !disabled}
+      <span 
+        class="{prefixCls}-clear {classNames.clear ?? ''}"
+        onclick={handleClear}
+        onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleClear(e as unknown as MouseEvent); }}
+        onmousedown={handlePopupMouseDown}
+        role="button"
+        tabindex={-1}
+        aria-label="Clear"
+      >
+        <svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor">
+          <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"/>
+        </svg>
+      </span>
+    {/if}
+
+    <!-- Suffix -->
+    {#if suffix}
+      <span class="{prefixCls}-suffix {classNames.suffix ?? ''}">
+        {#if typeof suffix === 'string'}
+          {suffix}
+        {:else}
+          {@render suffix()}
+        {/if}
+      </span>
+    {/if}
+  </div>
 
   <!-- Dropdown -->
   {#if open}
@@ -653,8 +652,12 @@
   /* Placeholder */
   :global(.ant-select-auto-complete .ant-select-selection-placeholder) {
     position: absolute;
-    left: 11px;
-    right: 11px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
     color: var(--ant-color-text-placeholder, rgba(0, 0, 0, 0.25));
     pointer-events: none;
     overflow: hidden;
@@ -662,46 +665,35 @@
     text-overflow: ellipsis;
   }
 
-  :global(.ant-select-auto-complete.ant-select-sm .ant-select-selection-placeholder) {
-    left: 7px;
-    right: 7px;
-  }
-
   /* Prefix & Suffix */
   :global(.ant-select-auto-complete .ant-select-prefix),
   :global(.ant-select-auto-complete .ant-select-suffix) {
     display: flex;
+    flex: none;
     align-items: center;
-    color: var(--ant-color-text-secondary, rgba(0, 0, 0, 0.45));
+    color: var(--ant-color-text-quaternary, rgba(0, 0, 0, 0.25));
   }
 
   :global(.ant-select-auto-complete .ant-select-prefix) {
-    margin-right: 4px;
+    margin-inline-end: 4px;
   }
 
   :global(.ant-select-auto-complete .ant-select-suffix) {
-    margin-left: 4px;
+    margin-inline-start: 4px;
   }
 
   /* Clear button */
   :global(.ant-select-auto-complete .ant-select-clear) {
-    position: absolute;
-    right: 11px;
-    top: 50%;
-    transform: translateY(-50%);
     display: flex;
+    flex: none;
     align-items: center;
     justify-content: center;
-    width: 16px;
-    height: 16px;
+    margin-inline-start: 4px;
     color: var(--ant-color-text-quaternary, rgba(0, 0, 0, 0.25));
     font-size: 12px;
-    background: var(--ant-color-bg-container, #fff);
-    border-radius: 50%;
     cursor: pointer;
     opacity: 0;
     transition: color 0.2s, opacity 0.2s;
-    z-index: 1;
   }
 
   :global(.ant-select-auto-complete:hover .ant-select-clear),

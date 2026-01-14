@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { AutoComplete, Flex } from '$lib';
+  import { AutoComplete, Flex, SearchOutlined, EditOutlined } from '$lib';
   import type { AutoCompleteOption } from '$lib';
 
   // Basic example
@@ -133,6 +133,55 @@
             style="width: 220px"
             emptyOpen={false}
           />
+        </Flex>
+      </Flex>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>With Icons</h2>
+    <p class="section-desc">Add prefix or suffix icons using snippets. Common use cases include search and user icons.</p>
+    
+    <div class="demo-box">
+      <Flex gap="large">
+        <Flex vertical gap="small">
+          <span>Search suffix</span>
+          <AutoComplete
+            options={basicOptions}
+            placeholder="Search..."
+            style="width: 220px"
+          >
+            {#snippet suffix()}
+              <SearchOutlined style="color: var(--ant-color-text-quaternary)" />
+            {/snippet}
+          </AutoComplete>
+        </Flex>
+        <Flex vertical gap="small">
+          <span>Edit prefix</span>
+          <AutoComplete
+            options={basicOptions}
+            placeholder="Edit item..."
+            style="width: 220px"
+          >
+            {#snippet prefix()}
+              <EditOutlined style="color: var(--ant-color-text-quaternary)" />
+            {/snippet}
+          </AutoComplete>
+        </Flex>
+        <Flex vertical gap="small">
+          <span>Both</span>
+          <AutoComplete
+            options={basicOptions}
+            placeholder="Search to edit..."
+            style="width: 220px"
+          >
+            {#snippet prefix()}
+              <EditOutlined style="color: var(--ant-color-text-quaternary)" />
+            {/snippet}
+            {#snippet suffix()}
+              <SearchOutlined style="color: var(--ant-color-text-quaternary)" />
+            {/snippet}
+          </AutoComplete>
         </Flex>
       </Flex>
     </div>
