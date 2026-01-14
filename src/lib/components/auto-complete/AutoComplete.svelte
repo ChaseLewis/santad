@@ -39,6 +39,8 @@
     notFoundContent = 'No matches found',
     suffix,
     prefix,
+    enterButton,
+    onsearchclick,
     autofocus = false,
     listHeight = 256,
     virtual = true,
@@ -224,6 +226,9 @@
         e.preventDefault();
         if (open && activeIndex >= 0 && activeIndex < filteredOptions.length) {
           handleSelect(filteredOptions[activeIndex].option);
+        } else if (enterButton) {
+          // Trigger search when Enter is pressed with enterButton
+          onsearchclick?.(value);
         }
         break;
         
@@ -309,6 +314,12 @@
     e.preventDefault();
   }
 
+  // Handle search button click
+  function handleSearchClick(e: MouseEvent) {
+    e.preventDefault();
+    onsearchclick?.(value);
+  }
+
   // Compute classes
   const rootClasses = $derived.by(() => {
     const cls = [`${prefixCls}-auto-complete`, prefixCls];
@@ -322,6 +333,7 @@
     if (value) cls.push(`${prefixCls}-has-value`);
     if (allowClear && value) cls.push(`${prefixCls}-allow-clear`);
     if (popupMatchSelectWidth === false) cls.push(`${prefixCls}-popup-auto-width`);
+    if (enterButton) cls.push(`${prefixCls}-has-search-btn`);
     
     if (className) cls.push(className);
     if (classNames.root) cls.push(classNames.root);
@@ -434,6 +446,27 @@
       </span>
     {/if}
   </div>
+
+  <!-- Search Button -->
+  {#if enterButton}
+    <button
+      type="button"
+      class="{prefixCls}-search-btn"
+      {disabled}
+      onclick={handleSearchClick}
+      onmousedown={handlePopupMouseDown}
+    >
+      {#if enterButton === true}
+        <svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor" aria-label="search">
+          <path d="M909.6 854.5L649.9 594.8C690.2 542.7 714 478.4 714 408c0-167.6-136.4-304-304-304S106 240.4 106 408s136.4 304 304 304c70.4 0 134.7-23.8 186.8-64.1l259.7 259.6a8.2 8.2 0 0011.6 0l51.5-51.5c3.2-3.2 3.2-8.4 0-11.5zM408 640c-128.4 0-232-103.6-232-232s103.6-232 232-232 232 103.6 232 232-103.6 232-232 232z"/>
+        </svg>
+      {:else if typeof enterButton === 'string'}
+        {enterButton}
+      {:else}
+        {@render enterButton()}
+      {/if}
+    </button>
+  {/if}
 
   <!-- Dropdown -->
   {#if open}
@@ -703,6 +736,66 @@
 
   :global(.ant-select-auto-complete .ant-select-clear:hover) {
     color: var(--ant-color-text-tertiary, rgba(0, 0, 0, 0.45));
+  }
+
+  /* Search Button */
+  :global(.ant-select-auto-complete.ant-select-has-search-btn) {
+    display: inline-flex;
+  }
+
+  :global(.ant-select-auto-complete.ant-select-has-search-btn .ant-select-selector) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0;
+  }
+
+  :global(.ant-select-auto-complete .ant-select-search-btn) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fff;
+    background-color: var(--ant-color-primary, #1677ff);
+    border: 1px solid var(--ant-color-primary, #1677ff);
+    border-left: 0;
+    border-radius: 0 var(--ant-border-radius, 6px) var(--ant-border-radius, 6px) 0;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  :global(.ant-select-auto-complete .ant-select-search-btn:hover) {
+    background-color: var(--ant-color-primary-hover, #4096ff);
+    border-color: var(--ant-color-primary-hover, #4096ff);
+  }
+
+  :global(.ant-select-auto-complete .ant-select-search-btn:active) {
+    background-color: var(--ant-color-primary-active, #0958d9);
+    border-color: var(--ant-color-primary-active, #0958d9);
+  }
+
+  :global(.ant-select-auto-complete .ant-select-search-btn:disabled) {
+    color: var(--ant-color-text-disabled, rgba(0, 0, 0, 0.25));
+    background-color: var(--ant-color-bg-container-disabled, rgba(0, 0, 0, 0.04));
+    border-color: var(--ant-color-border, #d9d9d9);
+    cursor: not-allowed;
+  }
+
+  :global(.ant-select-auto-complete .ant-select-search-btn svg) {
+    font-size: 16px;
+  }
+
+  /* Search button sizes */
+  :global(.ant-select-auto-complete.ant-select-sm .ant-select-search-btn) {
+    padding: 0 11px;
+    font-size: 12px;
+  }
+
+  :global(.ant-select-auto-complete.ant-select-lg .ant-select-search-btn) {
+    padding: 0 15px;
+    font-size: 16px;
   }
 
   /* Dropdown */

@@ -112,6 +112,15 @@ export interface AutoCompleteProps extends Omit<HTMLInputAttributes, 'size' | 'v
   suffix?: Snippet | string;
   /** Prefix icon/content */
   prefix?: Snippet | string;
+  /** 
+   * Search button configuration
+   * - true: Shows a search button with search icon
+   * - string: Shows a button with the provided text
+   * - Snippet: Custom button content
+   */
+  enterButton?: boolean | string | Snippet;
+  /** Callback when search button is clicked or Enter is pressed */
+  onsearchclick?: (value: string) => void;
   /** Whether to auto focus on mount */
   autofocus?: boolean;
   /** Max height of dropdown */

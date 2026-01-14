@@ -4,6 +4,7 @@
 
   // Basic example
   let basicValue = $state('');
+  let searchBtnValue = $state('');
   const basicOptions = [
     { value: 'Burns Bay Road' },
     { value: 'Downing Street' },
@@ -182,6 +183,48 @@
               <SearchOutlined style="color: var(--ant-color-text-quaternary)" />
             {/snippet}
           </AutoComplete>
+        </Flex>
+      </Flex>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Search Button</h2>
+    <p class="section-desc">Add a search button with <code>enterButton</code>. Use <code>true</code> for an icon, a string for text, or a snippet for custom content.</p>
+    
+    <div class="demo-box">
+      <Flex gap="large" wrap>
+        <Flex vertical gap="small">
+          <span>Icon button</span>
+          <AutoComplete
+            bind:value={searchBtnValue}
+            options={basicOptions}
+            placeholder="Search..."
+            style="width: 220px"
+            enterButton
+            onsearchclick={(val) => alert(`Searching: ${val}`)}
+          />
+        </Flex>
+        <Flex vertical gap="small">
+          <span>Text button</span>
+          <AutoComplete
+            options={basicOptions}
+            placeholder="Search..."
+            style="width: 220px"
+            enterButton="Search"
+            onsearchclick={(val) => alert(`Searching: ${val}`)}
+          />
+        </Flex>
+        <Flex vertical gap="small">
+          <span>Large size</span>
+          <AutoComplete
+            options={basicOptions}
+            placeholder="Search..."
+            style="width: 220px"
+            size="large"
+            enterButton="Go"
+            onsearchclick={(val) => alert(`Searching: ${val}`)}
+          />
         </Flex>
       </Flex>
     </div>
