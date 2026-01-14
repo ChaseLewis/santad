@@ -63,6 +63,7 @@
     { name: 'Switch', path: '/switch' },
     { name: 'Radio', path: '/radio' },
     { name: 'Input', path: '/input' },
+    { name: 'Progress', path: '/progress' },
     { name: 'Tabs', path: '/tabs' },
     { name: 'Tag', path: '/tag' },
     { name: 'Typography', path: '/typography' },

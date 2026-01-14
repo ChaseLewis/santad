@@ -260,3 +260,13 @@ export type {
   AutoCompleteStyles,
 } from './components/auto-complete';
 
+// Components - Progress
+export { Progress } from './components/progress';
+export type {
+  ProgressProps,
+  ProgressType,
+  ProgressStatus,
+  ProgressSize,
+  ProgressStrokeLinecap,
+} from './components/progress';
+
