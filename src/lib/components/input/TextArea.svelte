@@ -247,27 +247,27 @@
 </script>
 
 {#if hasWrapper}
-  <span class={wrapperClasses} style={rootStyle}>
-    <textarea
-      bind:this={textareaRef}
-      class={textareaClasses}
-      style="{styles.textarea ?? ''}{computedHeight ? `; height: ${computedHeight}` : ''}"
-      value={currentValue}
-      {disabled}
-      {placeholder}
-      {readonly}
-      {maxLength}
-      rows={autoSizeConfig ? undefined : rows}
-      oninput={handleInput}
-      onkeydown={handleKeyDown}
-      onfocus={handleFocus}
-      onblur={handleBlur}
-      {...restProps}
-    ></textarea>
-    
-    {#if showClearIcon || countConfig}
-      <span class="{prefixCls}-textarea-suffix">
-        {#if showClearIcon}
+  <div class="{prefixCls}-textarea-wrapper {countConfig ? `${prefixCls}-textarea-wrapper-show-count` : ''}" style={rootStyle}>
+    <span class={wrapperClasses}>
+      <textarea
+        bind:this={textareaRef}
+        class={textareaClasses}
+        style="{styles.textarea ?? ''}{computedHeight ? `; height: ${computedHeight}` : ''}"
+        value={currentValue}
+        {disabled}
+        {placeholder}
+        {readonly}
+        {maxLength}
+        rows={autoSizeConfig ? undefined : rows}
+        oninput={handleInput}
+        onkeydown={handleKeyDown}
+        onfocus={handleFocus}
+        onblur={handleBlur}
+        {...restProps}
+      ></textarea>
+      
+      {#if showClearIcon}
+        <span class="{prefixCls}-textarea-suffix">
           <button
             type="button"
             class="{prefixCls}-clear-icon {classNames.clearIcon ?? ''}"
@@ -279,15 +279,15 @@
               <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z" />
             </svg>
           </button>
-        {/if}
-        {#if countConfig}
-          <span class="{prefixCls}-textarea-data-count {classNames.count ?? ''}" style={styles.count}>
-            {countDisplay}
-          </span>
-        {/if}
+        </span>
+      {/if}
+    </span>
+    {#if countConfig}
+      <span class="{prefixCls}-textarea-data-count {classNames.count ?? ''}" style={styles.count}>
+        {countDisplay}
       </span>
     {/if}
-  </span>
+  </div>
 {:else}
   <textarea
     bind:this={textareaRef}
@@ -365,6 +365,7 @@
 
   :global(.ant-input-textarea-affix-wrapper) > :global(.ant-input-textarea) {
     padding: 0;
+    padding-inline-end: 24px; /* Space for clear button */
     border: none;
     outline: none;
     background: transparent;
@@ -413,26 +414,24 @@
     pointer-events: auto;
   }
 
-  /* Show count */
-  :global(.ant-input-textarea-show-count) {
-    position: relative;
+  /* Textarea wrapper for count outside */
+  :global(.ant-input-textarea-wrapper) {
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
   }
 
+  :global(.ant-input-textarea-wrapper) > :global(.ant-input-textarea-affix-wrapper) {
+    width: 100%;
+  }
+
+  /* Show count - positioned outside and below textarea */
   :global(.ant-input-textarea-data-count) {
-    position: absolute;
-    bottom: 4px;
-    inset-inline-end: 11px;
     color: var(--ant-color-text-secondary, rgba(0, 0, 0, 0.45));
     white-space: nowrap;
     pointer-events: none;
     font-size: 14px;
-  }
-
-  :global(.ant-input-textarea-affix-wrapper .ant-input-textarea-data-count) {
-    position: relative;
-    bottom: auto;
-    inset-inline-end: auto;
-    align-self: flex-end;
+    text-align: end;
     margin-top: 4px;
   }
 

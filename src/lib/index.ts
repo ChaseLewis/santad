@@ -149,6 +149,41 @@ export type {
   TabsStyles,
 } from './components/tabs';
 
+// Components - Tag
+export { Tag, CheckableTag } from './components/tag';
+export type {
+  TagProps,
+  TagClassNames,
+  TagStyles,
+  TagVariant,
+  PresetColorKey,
+  PresetStatusColorType,
+  CheckableTagProps,
+} from './components/tag';
+export {
+  PresetColors,
+  PresetStatusColors,
+  TagVariants,
+  isPresetColor,
+  isPresetStatusColor,
+} from './components/tag';
+
+// Components - Typography
+export { Text, Title, Paragraph, Link } from './components/typography';
+export type {
+  TextProps,
+  TitleProps,
+  ParagraphProps,
+  LinkProps,
+  TextType,
+  TitleLevel,
+  BaseTypographyProps,
+} from './components/typography';
+export {
+  TextTypes,
+  TitleLevels,
+} from './components/typography';
+
 // Semantic Styling Utilities (Ant Design 6.0 style)
 export type { SemanticClassNames, SemanticStyles } from './utils/semantic';
 export { combineClasses, getSemanticStyle } from './utils/semantic';
@@ -156,4 +191,72 @@ export { combineClasses, getSemanticStyle } from './utils/semantic';
 // Wave Animation Utility
 export { wave, Wave } from './utils/wave';
 export type { WaveOptions } from './utils/wave';
+
+// Components - VirtualList
+export { VirtualList } from './components/virtual-list';
+export type {
+  VirtualListProps,
+  VirtualListItemContext,
+  VirtualListClassNames,
+  VirtualListStyles,
+  VirtualListScrollInfo,
+} from './components/virtual-list';
+
+// Components - VirtualGrid
+export { VirtualGrid } from './components/virtual-grid';
+export type {
+  VirtualGridProps,
+  VirtualGridCellContext,
+  VirtualGridClassNames,
+  VirtualGridStyles,
+  VirtualGridScrollInfo,
+} from './components/virtual-grid';
+
+// Components - Icon
+export {
+  Icon,
+  CheckOutlined,
+  CloseOutlined,
+  CopyOutlined,
+  EditOutlined,
+  EnterOutlined,
+  EyeOutlined,
+  EyeInvisibleOutlined,
+  LoadingOutlined,
+  SearchOutlined,
+} from './components/icon';
+export type {
+  IconProps,
+  CustomIconProps,
+  IconTheme,
+  IconDefinition,
+  IconClassNames,
+  IconStyles,
+} from './components/icon';
+
+// Components - Slider
+export { Slider } from './components/slider';
+export type {
+  SliderProps,
+  SliderMark,
+  SliderMarks,
+  SliderTooltipConfig,
+  SliderRangeConfig,
+  SliderClassNames,
+  SliderStyles,
+} from './components/slider';
+
+// Components - AutoComplete
+export { AutoComplete } from './components/auto-complete';
+export type {
+  AutoCompleteProps,
+  AutoCompleteOption,
+  AutoCompleteOptionGroup,
+  AutoCompleteOptions,
+  AutoCompleteSize,
+  AutoCompleteStatus,
+  AutoCompleteFilterOption,
+  AutoCompleteClassNames,
+  AutoCompleteStyles,
+} from './components/auto-complete';
 

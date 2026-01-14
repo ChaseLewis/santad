@@ -55,6 +55,7 @@
   // Navigation items
   const navItems = [
     { name: 'Overview', path: '/' },
+    { name: 'AutoComplete', path: '/auto-complete' },
     { name: 'Button', path: '/button' },
     { name: 'Flex', path: '/flex' },
     { name: 'Card', path: '/card' },
@@ -63,6 +64,12 @@
     { name: 'Radio', path: '/radio' },
     { name: 'Input', path: '/input' },
     { name: 'Tabs', path: '/tabs' },
+    { name: 'Tag', path: '/tag' },
+    { name: 'Typography', path: '/typography' },
+    { name: 'Icon', path: '/icon' },
+    { name: 'Slider', path: '/slider' },
+    { name: 'VirtualList', path: '/virtual-list' },
+    { name: 'VirtualGrid', path: '/virtual-grid' },
   ];
 </script>
 
